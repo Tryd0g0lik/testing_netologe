@@ -1,2 +1,6 @@
 .idea/*
 .git/*
+.pytest_cache/*
+python39/*
+*.txt
+yand_token.py

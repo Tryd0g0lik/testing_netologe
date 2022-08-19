@@ -1,3 +1,4 @@
+
 documents = [
     {"type": "passport", "number": "2207 876234", "name": "Василий Гупкин"},
     {"type": "invoice", "number": "11-2", "name": "Геннадий Покемонов"},
@@ -21,15 +22,18 @@ def check_document_existance(user_doc_number):
     return doc_founded
 
 
-def get_doc_owner_name():
-    user_doc_number = input('Введите номер документа - ')
+def get_doc_owner_name(user_doc_number):
+# def get_doc_owner_name():
+    # user_doc_number = numbers
+    # user_doc_number = input('Введите номер документа - ')
     print()
     doc_exist = check_document_existance(user_doc_number)
     if doc_exist:
         for current_document in documents:
             doc_number = current_document['number']
             if doc_number == user_doc_number:
-                return current_document['name']
+                # return current_document['name']
+                return "Code: 200"
 
 
 def get_all_doc_owners_names():
@@ -59,13 +63,22 @@ def add_new_shelf(shelf_number=''):
     return shelf_number, False
 
 
+# def append_doc_to_shelf(doc_number, shelf_number):
+#     add_new_shelf(shelf_number)
+#     directories[shelf_number].append(doc_number)
+
+
 def append_doc_to_shelf(doc_number, shelf_number):
-    add_new_shelf(shelf_number)
-    directories[shelf_number].append(doc_number)
+    try:
+        add_new_shelf(shelf_number)
+        directories[shelf_number].append(doc_number)
+        return "Code: 200"
+    except Exception:
+        return "None"
 
 
-def delete_doc():
-    user_doc_number = input('Введите номер документа - ')
+def delete_doc(user_doc_number):
+    # user_doc_number = input('Введите номер документа - ')
     doc_exist = check_document_existance(user_doc_number)
     if doc_exist:
         for current_document in documents:
@@ -73,16 +86,21 @@ def delete_doc():
             if doc_number == user_doc_number:
                 documents.remove(current_document)
                 remove_doc_from_shelf(doc_number)
-                return doc_number, True
+                return (doc_number, True)
+    else:
+        return ("None",)
 
-
-def get_doc_shelf():
-    user_doc_number = input('Введите номер документа - ')
+# def get_doc_shelf():
+def get_doc_shelf(user_doc_number):
+    # user_doc_number = input('Введите номер документа - ')
     doc_exist = check_document_existance(user_doc_number)
     if doc_exist:
         for directory_number, directory_docs_list in directories.items():
             if user_doc_number in directory_docs_list:
-                return directory_number
+                # return directory_number
+                return "Code: 200"
+    else:
+        return "None"
 
 
 def move_doc_to_shelf():
@@ -106,19 +124,25 @@ def show_all_docs_info():
         show_document_info(current_document)
 
 
-def add_new_doc():
-    new_doc_number = input('Введите номер документа - ')
-    new_doc_type = input('Введите тип документа - ')
-    new_doc_owner_name = input('Введите имя владельца документа- ')
-    new_doc_shelf_number = input('Введите номер полки для хранения - ')
+# def add_new_doc():
+def add_new_doc(new_doc_number, new_doc_type, new_doc_owner_name, new_doc_shelf_number):
+    # new_doc_number = input('Введите номер документа - ')
+    # new_doc_type = input('Введите тип документа - ')
+    # new_doc_owner_name = input('Введите имя владельца документа- ')
+    # new_doc_shelf_number = input('Введите номер полки для хранения - ')
     new_doc = {
         "type": new_doc_type,
         "number": new_doc_number,
         "name": new_doc_owner_name
     }
     documents.append(new_doc)
-    append_doc_to_shelf(new_doc_number, new_doc_shelf_number)
-    return new_doc_shelf_number
+    # append_doc_to_shelf(new_doc_number, new_doc_shelf_number)
+    response = append_doc_to_shelf(new_doc_number, new_doc_shelf_number)
+    if response == "Code: 200":
+        return "Code: 200"
+    # return new_doc_shelf_number
+    else:
+        return 'None'
 
 
 def secretary_program_start():
@@ -153,7 +177,8 @@ def secretary_program_start():
             print('Документ находится на полке номер {}'.format(directory_number))
         elif user_command == 'a':
             print('Добавление нового документа:')
-            new_doc_shelf_number = add_new_doc()
+            new_doc_shelf_number = add_new_doc(new_doc_number =  "passport", new_doc_type = "2207 876235", new_doc_owner_name = "Николай Гупкин",
+                new_doc_shelf_number = "2")
             print('\nНа полку "{}" добавлен новый документ:'.format(new_doc_shelf_number))
         elif user_command == 'd':
             doc_number, deleted = delete_doc()
