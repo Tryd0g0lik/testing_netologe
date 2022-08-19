@@ -2,7 +2,7 @@ import requests
 
 import json
 import urllib.parse as parse
-from yand_token import token_key
+from yandex_folder.yand_token import token_key
 
 
 path = 'disk:/foo' # путь к корневой папке
@@ -38,4 +38,4 @@ def yandex_request_put_foldr(path_in_root, folder_of_putting, header):
   return response
 
 t = yandex_request_put_foldr(path_in_root, folder_of_putting, header)
-print(t)
+print(type(t))
