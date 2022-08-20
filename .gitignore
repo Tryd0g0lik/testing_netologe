@@ -4,3 +4,4 @@
 python39/*
 *.txt
 yand_token.py
+yandex_folder/__pycache__/*
