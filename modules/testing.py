@@ -13,7 +13,7 @@ number = [
   ('112', None),
   ('11 2', None),
   ('2207  876234', None),
-  ( ' 2207 876234', None),
+  (' 2207 876234', None),
   ('2207876234', None),
   ('2207-876234', None),
   ('2207 87623', None),
@@ -21,11 +21,12 @@ number = [
   ('', None)
 ]
 
+
 @pytest.mark.parametrize("number, result", number)
 def test_get_doc_owner_name(number, result):
   assert get_doc_owner_name(number) == result
 
-#new_doc_number, new_doc_type, new_doc_owner_name, new_doc_shelf_number
+
 document = [
     ("2207 876235", "passpor", "Дмитрий Гупкин", "1", 'Code: 200'),
     ("2207 876236", "passport", "Дмитрий Гупкин", "2", 'None'),
@@ -84,68 +85,68 @@ document = [
     ("100 22", "insurance", "Dmitrii Pavlov", "3", 'None'),
 ]
 
+
 @pytest.mark.parametrize("new_doc_number, new_doc_type, new_doc_owner_name, new_doc_shelf_number, result", document)
 def test_add_new_doc(new_doc_number, new_doc_type, new_doc_owner_name, new_doc_shelf_number, result):
   assert add_new_doc(new_doc_number, new_doc_type, new_doc_owner_name, new_doc_shelf_number) == result
 
-
-
 number = [
-("2207 876234", "Code: 200"),
-("2207-876234", "None"),
-(" 2207 876234", "None"),
-("2207 87623", "None"),
-("220 876234", "None"),
-("22 876234", "None"),
-("2207876234", "None"),
-("11-2", "Code: 200"),
-("11-2 ", "None"),
-("1-12", "None"),
-(" 11-2", "None"),
-("11", "None"),
-("112", "None"),
-("10006", "Code: 200"),
-("10007", "None"),
-("1006", "None"),
-("10006 ", "None"),
-("1000-6", "None"),
-("100-06", "None"),
-("10-006", "None"),
-("1-0006", "None"),
-(" 10006", "None"),
-("", "None")
+  ("2207 876234", "Code: 200"),
+  ("2207-876234", "None"),
+  (" 2207 876234", "None"),
+  ("2207 87623", "None"),
+  ("220 876234", "None"),
+  ("22 876234", "None"),
+  ("2207876234", "None"),
+  ("11-2", "Code: 200"),
+  ("11-2 ", "None"),
+  ("1-12", "None"),
+  (" 11-2", "None"),
+  ("11", "None"),
+  ("112", "None"),
+  ("10006", "Code: 200"),
+  ("10007", "None"),
+  ("1006", "None"),
+  ("10006 ", "None"),
+  ("1000-6", "None"),
+  ("100-06", "None"),
+  ("10-006", "None"),
+  ("1-0006", "None"),
+  (" 10006", "None"),
+  ("", "None")
 ]
+
+
 @pytest.mark.parametrize("user_doc_number, result", number)
 def test_get_doc_shelf_(user_doc_number, result):
-
-
   assert get_doc_shelf(user_doc_number) == result
 
 number = [
-("2207 876234", ("2207 876234", True)),
-("2207-876234", ("None",)),
-(" 2207 876234", ("None",)),
-("2207 87623", ("None",)),
-("220 876234", ("None",)),
-("22 876234", ("None",)),
-("2207876234", ("None",)),
-("11-2", ("11-2", True)),
-("11-2 ", ("None",)),
-("1-12", ("None",)),
-(" 11-2", ("None",)),
-("11", ("None",)),
-("112", ("None",)),
-("10006", ("10006", True)),
-("10007", ("None",)),
-("1006", ("None",)),
-("10006 ", ("None",)),
-("1000-6", ("None",)),
-("100-06", ("None",)),
-("10-006", ("None",)),
-("1-0006", ("None",)),
-(" 10006", ("None",)),
-("", ("None",))
+  ("2207 876234", ("2207 876234", True)),
+  ("2207-876234", ("None",)),
+  (" 2207 876234", ("None",)),
+  ("2207 87623", ("None",)),
+  ("220 876234", ("None",)),
+  ("22 876234", ("None",)),
+  ("2207876234", ("None",)),
+  ("11-2", ("11-2", True)),
+  ("11-2 ", ("None",)),
+  ("1-12", ("None",)),
+  (" 11-2", ("None",)),
+  ("11", ("None",)),
+  ("112", ("None",)),
+  ("10006", ("10006", True)),
+  ("10007", ("None",)),
+  ("1006", ("None",)),
+  ("10006 ", ("None",)),
+  ("1000-6", ("None",)),
+  ("100-06", ("None",)),
+  ("10-006", ("None",)),
+  ("1-0006", ("None",)),
+  (" 10006", ("None",)),
+  ("", ("None",))
 ]
+
 
 @pytest.mark.parametrize("user_doc_number, result", number)
 def test_delete_doc(user_doc_number, result):

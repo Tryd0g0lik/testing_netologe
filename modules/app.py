@@ -23,9 +23,6 @@ def check_document_existance(user_doc_number):
 
 
 def get_doc_owner_name(user_doc_number):
-# def get_doc_owner_name():
-    # user_doc_number = numbers
-    # user_doc_number = input('Введите номер документа - ')
     print()
     doc_exist = check_document_existance(user_doc_number)
     if doc_exist:
@@ -90,14 +87,13 @@ def delete_doc(user_doc_number):
     else:
         return ("None",)
 
-# def get_doc_shelf():
+
 def get_doc_shelf(user_doc_number):
-    # user_doc_number = input('Введите номер документа - ')
+
     doc_exist = check_document_existance(user_doc_number)
     if doc_exist:
         for directory_number, directory_docs_list in directories.items():
             if user_doc_number in directory_docs_list:
-                # return directory_number
                 return "Code: 200"
     else:
         return "None"
@@ -126,17 +122,12 @@ def show_all_docs_info():
 
 # def add_new_doc():
 def add_new_doc(new_doc_number, new_doc_type, new_doc_owner_name, new_doc_shelf_number):
-    # new_doc_number = input('Введите номер документа - ')
-    # new_doc_type = input('Введите тип документа - ')
-    # new_doc_owner_name = input('Введите имя владельца документа- ')
-    # new_doc_shelf_number = input('Введите номер полки для хранения - ')
     new_doc = {
         "type": new_doc_type,
         "number": new_doc_number,
         "name": new_doc_owner_name
     }
     documents.append(new_doc)
-    # append_doc_to_shelf(new_doc_number, new_doc_shelf_number)
     response = append_doc_to_shelf(new_doc_number, new_doc_shelf_number)
     if response == "Code: 200":
         return "Code: 200"
@@ -177,8 +168,12 @@ def secretary_program_start():
             print('Документ находится на полке номер {}'.format(directory_number))
         elif user_command == 'a':
             print('Добавление нового документа:')
-            new_doc_shelf_number = add_new_doc(new_doc_number =  "passport", new_doc_type = "2207 876235", new_doc_owner_name = "Николай Гупкин",
-                new_doc_shelf_number = "2")
+            new_doc_shelf_number = add_new_doc(
+                new_doc_number="passport",
+                new_doc_type="2207 876235",
+                new_doc_owner_name="Николай Гупкин",
+                new_doc_shelf_number="2")
+
             print('\nНа полку "{}" добавлен новый документ:'.format(new_doc_shelf_number))
         elif user_command == 'd':
             doc_number, deleted = delete_doc()
